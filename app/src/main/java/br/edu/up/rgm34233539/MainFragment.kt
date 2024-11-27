@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.edu.up.rgm33824215.adapter.RestaurantAdapter
-import br.edu.up.rgm33824215.viewmodel.MainActivityViewModel
+import br.edu.up.rgm34233539.adapter.RestaurantAdapter
+import br.edu.up.rgm34233539.viewmodel.MainActivityViewModel
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -233,9 +233,9 @@ class MainFragment : Fragment(),
     private fun startSignIn() {
         // Sign in with FirebaseUI
         val intent = AuthUI.getInstance().createSignInIntentBuilder()
-                .setAvailableProviders(listOf(AuthUI.IdpConfig.EmailBuilder().build()))
-                .setIsSmartLockEnabled(false)
-                .build()
+            .setAvailableProviders(listOf(AuthUI.IdpConfig.EmailBuilder().build()))
+            .setIsSmartLockEnabled(false)
+            .build()
 
         signInLauncher.launch(intent)
         viewModel.isSigningIn = true
@@ -274,3 +274,4 @@ class MainFragment : Fragment(),
         private const val LIMIT = 50
     }
 }
+

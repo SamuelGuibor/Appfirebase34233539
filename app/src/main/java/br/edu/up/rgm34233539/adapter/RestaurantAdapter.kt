@@ -1,4 +1,4 @@
-package br.edu.up.rgm33824215.adapter
+package br.edu.up.rgm34233539.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -18,7 +18,7 @@ import com.google.firebase.firestore.ktx.toObject
  * RecyclerView adapter for a list of Restaurants.
  */
 open class RestaurantAdapter(query: Query, private val listener: OnRestaurantSelectedListener) :
-        FirestoreAdapter<RestaurantAdapter.ViewHolder>(query) {
+    FirestoreAdapter<RestaurantAdapter.ViewHolder>(query) {
 
     interface OnRestaurantSelectedListener {
 
@@ -51,8 +51,8 @@ open class RestaurantAdapter(query: Query, private val listener: OnRestaurantSel
 
             // Load image
             Glide.with(binding.restaurantItemImage.context)
-                    .load(restaurant.photo)
-                    .into(binding.restaurantItemImage)
+                .load(restaurant.photo)
+                .into(binding.restaurantItemImage)
 
             val numRatings: Int = restaurant.numRatings
 
@@ -62,7 +62,7 @@ open class RestaurantAdapter(query: Query, private val listener: OnRestaurantSel
             binding.restaurantItemCategory.text = restaurant.category
             binding.restaurantItemNumRatings.text = resources.getString(
                 R.string.fmt_num_ratings,
-                    numRatings)
+                numRatings)
             binding.restaurantItemPrice.text = RestaurantUtil.getPriceString(restaurant)
 
             // Click listener

@@ -11,14 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
-import com.google.android.material.snackbar.Snackbar
-//import com.google.firebase.example.fireeats.databinding.FragmentRestaurantDetailBinding
 import br.edu.up.rgm34233539.adapter.RatingAdapter
 import br.edu.up.rgm34233539.databinding.FragmentRestaurantDetailBinding
 import br.edu.up.rgm34233539.model.Rating
 import br.edu.up.rgm34233539.model.Restaurant
 import br.edu.up.rgm34233539.util.RestaurantUtil
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
@@ -62,9 +60,9 @@ class RestaurantDetailFragment : Fragment(),
 
         // Get ratings
         val ratingsQuery = restaurantRef
-                .collection("ratings")
-                .orderBy("timestamp", Query.Direction.DESCENDING)
-                .limit(50)
+            .collection("ratings")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .limit(50)
 
         // RecyclerView
         ratingAdapter = object : RatingAdapter(ratingsQuery) {
@@ -130,8 +128,8 @@ class RestaurantDetailFragment : Fragment(),
 
         // Background image
         Glide.with(binding.restaurantImage.context)
-                .load(restaurant.photo)
-                .into(binding.restaurantImage)
+            .load(restaurant.photo)
+            .into(binding.restaurantImage)
     }
 
     private fun onBackArrowClicked() {
@@ -145,22 +143,22 @@ class RestaurantDetailFragment : Fragment(),
     override fun onRating(rating: Rating) {
         // In a transaction, add the new rating and update the aggregate totals
         addRating(restaurantRef, rating)
-                .addOnSuccessListener(requireActivity()) {
-                    Log.d(TAG, "Rating added")
+            .addOnSuccessListener(requireActivity()) {
+                Log.d(TAG, "Rating added")
 
-                    // Hide keyboard and scroll to top
-                    hideKeyboard()
-                    binding.recyclerRatings.smoothScrollToPosition(0)
-                }
-                .addOnFailureListener(requireActivity()) { e ->
-                    Log.w(TAG, "Add rating failed", e)
+                // Hide keyboard and scroll to top
+                hideKeyboard()
+                binding.recyclerRatings.smoothScrollToPosition(0)
+            }
+            .addOnFailureListener(requireActivity()) { e ->
+                Log.w(TAG, "Add rating failed", e)
 
-                    // Show failure message and hide keyboard
-                    hideKeyboard()
-                    Snackbar.make(
-                        requireView().findViewById(android.R.id.content), "Failed to add rating",
-                            Snackbar.LENGTH_SHORT).show()
-                }
+                // Show failure message and hide keyboard
+                hideKeyboard()
+                Snackbar.make(
+                    requireView().findViewById(android.R.id.content), "Failed to add rating",
+                    Snackbar.LENGTH_SHORT).show()
+            }
     }
 
     private fun addRating(restaurantRef: DocumentReference, rating: Rating): Task<Void> {
@@ -195,7 +193,7 @@ class RestaurantDetailFragment : Fragment(),
         val view = requireActivity().currentFocus
         if (view != null) {
             (requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-                    .hideSoftInputFromWindow(view.windowToken, 0)
+                .hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
